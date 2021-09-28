@@ -139,6 +139,21 @@ defmodule LiveMapViewWeb.UserAuth do
     end
   end
 
+  def require_verify_header(conn, _opts) do
+    with ["Bearer " <> token] <- get_req_header(conn, "authorization"),
+         user <- Accounts.get_user_by_session_token(token |> Base.decode64!()) do
+      conn
+      |> assign(:current_user, user)
+    else
+      _error ->
+        conn
+        |> put_status(:unauthorized)
+        |> put_view(LiveMapViewWeb.ErrorView)
+        |> render(:"401")
+        |> halt()
+    end
+  end
+
   defp maybe_store_return_to(%{method: "GET"} = conn) do
     put_session(conn, :user_return_to, current_path(conn))
   end
