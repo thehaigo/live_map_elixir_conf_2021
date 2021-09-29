@@ -1,5 +1,3 @@
-<h1>Show Map</h1>
-
 <%= if @live_action in [:edit] do %>
   <%= live_modal LiveMapViewWeb.MapLive.FormComponent,
     id: @map.id,
@@ -9,19 +7,27 @@
     return_to: Routes.map_show_path(@socket, :show, @map) %>
 <% end %>
 
-<ul>
+<div class="row">
+  <div class="column column-20">
+    <h1>Show Map</h1>
+    <ul>
+      <li>
+        <strong>Name:</strong>
+        <%= @map.name %>
+      </li>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @map.name %>
-  </li>
+      <li>
+        <strong>Description:</strong>
+        <%= @map.description %>
+      </li>
 
-  <li>
-    <strong>Description:</strong>
-    <%= @map.description %>
-  </li>
-
-</ul>
-
-<span><%= live_patch "Edit", to: Routes.map_show_path(@socket, :edit, @map), class: "button" %></span> |
-<span><%= live_redirect "Back", to: Routes.map_index_path(@socket, :index) %></span>
+    </ul>
+    <span><%= live_patch "Edit", to: Routes.map_show_path(@socket, :edit, @map), class: "button" %></span>
+    <span><%= live_redirect "Back", to: Routes.map_index_path(@socket, :index) %></span>
+  </div>
+  <div class="column column-80">
+    <div id="googleMap" phx-update="ignore" phx-hook="Map">
+      <div id="map"></div>
+    </div>
+  </div>
+</div>

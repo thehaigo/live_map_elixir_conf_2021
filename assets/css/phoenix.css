@@ -19,11 +19,16 @@ pre{padding: 1em;}
 
 .container{
   margin: 0 auto;
-  max-width: 80.0rem;
+  max-width: 120.0rem;
   padding: 0 2.0rem;
   position: relative;
   width: 100%
 }
+
+#map {
+  height: 400px;
+}
+
 select {
   width: auto;
 }
