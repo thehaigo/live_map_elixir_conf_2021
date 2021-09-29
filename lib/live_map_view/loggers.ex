@@ -6,7 +6,7 @@ defmodule LiveMapView.Loggers do
   import Ecto.Query, warn: false
   alias LiveMapView.Repo
 
-  alias LiveMapView.Loggers.Map
+  alias LiveMapView.Loggers.{Map, Point}
 
   @doc """
   Returns the list of maps.
@@ -19,6 +19,12 @@ defmodule LiveMapView.Loggers do
   """
   def list_maps do
     Repo.all(Map)
+  end
+
+  def list_points(map_id) do
+    Point
+    |> where([p], p.map_id == ^map_id)
+    |> Repo.all
   end
 
   @doc """
@@ -52,6 +58,12 @@ defmodule LiveMapView.Loggers do
   def create_map(attrs \\ %{}) do
     %Map{}
     |> Map.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def create_point(attrs \\ %{}) do
+    %Point{}
+    |> Point.changeset(attrs)
     |> Repo.insert()
   end
 
