@@ -1,4 +1,4 @@
-defmodule LiveMapViewWeb.Api.UserSessionView do
+defmodule LiveMapViewWeb.UserApiSessionView do
   use LiveMapViewWeb, :view
 
   def render("token.json", %{token: token}) do

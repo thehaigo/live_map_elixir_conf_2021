@@ -27,7 +27,7 @@ defmodule LiveMapViewWeb.Router do
   scope "/api", LiveMapViewWeb do
     pipe_through :api
 
-    post "/log_in", Api.UserSessionController, :create
+    post "/log_in", UserApiSessionController, :create
   end
 
   scope "/api", LiveMapViewWeb do

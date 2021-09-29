@@ -1,4 +1,4 @@
-defmodule LiveMapViewWeb.Api.UserSessionController do
+defmodule LiveMapViewWeb.UserApiSessionController do
   use LiveMapViewWeb, :controller
 
   alias LiveMapView.Accounts
