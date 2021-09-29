@@ -33,6 +33,8 @@ defmodule LiveMapViewWeb.Router do
   scope "/api", LiveMapViewWeb do
     pipe_through [:api, :require_verify_header]
 
+    resources "/maps", MapController, except: [:new, :edit]
+    resources "/points", PointController, only: [:create]
   end
 
   # Enables LiveDashboard only for development
