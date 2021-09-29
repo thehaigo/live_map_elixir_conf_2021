@@ -15,9 +15,10 @@ defmodule LiveMapView.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: LiveMapView.PubSub},
       # Start the Endpoint (http/https)
-      LiveMapViewWeb.Endpoint
+      LiveMapViewWeb.Endpoint,
       # Start a worker by calling: LiveMapView.Worker.start_link(arg)
       # {LiveMapView.Worker, arg}
+      LiveMapViewWeb.Presence
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
