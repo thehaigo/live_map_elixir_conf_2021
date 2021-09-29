@@ -65,8 +65,16 @@ defmodule LiveMapView.Loggers do
     %Point{}
     |> Point.changeset(attrs)
     |> Repo.insert()
+    |> tap(&broadcast(&1, :created_point))
   end
 
+  def broadcast({:ok, point}, :created_point = event) do
+    Phoenix.PubSub.broadcast(
+      LiveMapView.PubSub,
+      "map:#{point.map_id}",
+      {event, point}
+    )
+  end
   @doc """
   Updates a map.
 

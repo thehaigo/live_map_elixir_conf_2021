@@ -15,6 +15,15 @@ Hooks.Map = {
       });
       window.map = map;
     });
+
+    this.handleEvent("created_point", (point) => {
+      const marker = new google.maps.Marker({
+        position: {lat: point.lat, lng: point.lng},
+        animation: google.maps.Animation.DROP
+      });
+      marker.setMap(window.map)
+      window.markers = [...window.markers, {...point, marker: marker}]
+    })
   }
 };
 
