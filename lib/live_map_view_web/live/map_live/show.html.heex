@@ -20,8 +20,15 @@
         <strong>Description:</strong>
         <%= @map.description %>
       </li>
-
     </ul>
+    <%= for device <- @devices do %>
+      <dl>
+        <dt><strong>id: <%= device.id |> String.split("-") |> List.first %></strong></dt>
+        <dt>lat: <%= device.current_location.lat %></dt>
+        <dt>lng: <%= device.current_location.lng %></dt>
+        <dt>at: <%= device.current_location.inserted_at %></dt>
+      </dl>
+    <% end %>
     <span><%= live_patch "Edit", to: Routes.map_show_path(@socket, :edit, @map), class: "button" %></span>
     <span><%= live_redirect "Back", to: Routes.map_index_path(@socket, :index) %></span>
   </div>
